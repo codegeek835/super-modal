@@ -1,6 +1,6 @@
 {
-  "name": "super-modal",
-  "version": "1.0.0",
+  "name": "super-modal-resizable",
+  "version": "1.0.2",
   "description": "A Dropdown with super features",
   "main": "dist/index.js",
   "scripts": {
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ashwaniweb/super-modal.git"
+    "url": "git+https://github.com/codegeek835/super-modal.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ashwaniweb/super-modal/issues"
+    "url": "https://github.com/codegeek835/super-modal/issues"
   },
-  "homepage": "https://github.com/ashwaniweb/super-modal#readme",
+  "homepage": "https://github.com/codegeek835/super-modal#readme",
   "devDependencies": {
     "@types/prop-types": "^15.7.3",
     "@types/react": "^16.9.36",
@@ -33,7 +33,10 @@
     "rollup": "^2.16.1",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.27.1",
-    "typescript": "^3.9.5",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
     "react-rnd": "^10.1.10"
   },
   "peerDependencies": {
