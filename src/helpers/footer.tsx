@@ -1,10 +1,9 @@
-import * as React from "react";
-const Description = (props: any) => {
+import * as React from 'react';
+const Footer = (props: any) => {
   return (
-    <div className={`footer ${props.className}`} id={props.id ? props.id : ""}>
+    <div className={`footer ${props.className || ''}`} id={props.id || ''} ref={props.reference}>
       {props.dangerouslySetInnerHTML ? props.dangerouslySetInnerHTML.__html : props.children}
     </div>
   );
 };
-// Footer.displayName = "Footer"
-export default Description;
+export default Footer;
