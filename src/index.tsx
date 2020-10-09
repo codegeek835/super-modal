@@ -1,12 +1,12 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { Rnd } from 'react-rnd';
-import './assets/scss/styles.scss';
-import Content from './help/content';
-import Description from './help/description';
-import Dimmer from './help/dimmer';
-import Footer from './help/footer';
-import Header from './help/header';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { Rnd } from "react-rnd";
+import "./assets/scss/styles.scss";
+import Content from "./helpers/content";
+import Description from "./helpers/description";
+import Dimmer from "./helpers/dimmer";
+import Footer from "./helpers/footer";
+import Header from "./helpers/header";
 
 interface IProps {
   showModal: boolean;
@@ -44,15 +44,15 @@ interface IProps {
 
 class SuperModal extends React.PureComponent<IProps, any> {
   static defaultProps: Partial<IProps> = {
-    className: 'super-modal',
+    className: "super-modal",
     showModal: false,
     dimmer: true,
-    boundWith: 'window',
-    dragHandleClassName: 'daragble-header',
+    boundWith: "window",
+    dragHandleClassName: "daragble-header",
     disableDragging: false,
     autoResizeOnload: true,
-    alignVertical: 'center',
-    alignHorizontal: 'center',
+    alignVertical: "center",
+    alignHorizontal: "center",
     popUpPosition: {
       x: 300,
       y: 65,
@@ -61,7 +61,7 @@ class SuperModal extends React.PureComponent<IProps, any> {
       minHeight: 300,
       minWidth: 300,
       maxWidth: 1600,
-      maxHeight: 900
+      maxHeight: 900,
     },
     enable: {
       bottom: false,
@@ -71,8 +71,8 @@ class SuperModal extends React.PureComponent<IProps, any> {
       right: false,
       top: false,
       topLeft: false,
-      topRight: false
-    }
+      topRight: false,
+    },
   };
 
   static Header = Header;
@@ -99,7 +99,7 @@ class SuperModal extends React.PureComponent<IProps, any> {
 
       minimized: false,
       stacked: true,
-      fullScreen: false
+      fullScreen: false,
     };
     this.rnd = React.createRef();
     this.dimmerRef = React.createRef();
@@ -130,7 +130,7 @@ class SuperModal extends React.PureComponent<IProps, any> {
     minHeight: 0,
     minWidth: 0,
     maxWidth: 0,
-    maxHeight: 0
+    maxHeight: 0,
   };
   // function call on componentwillmount for getting account note code for selected patient
   componentDidMount = () => {
@@ -138,12 +138,15 @@ class SuperModal extends React.PureComponent<IProps, any> {
     this.initilalPopSizePosition();
   };
 
-  componentDidUpdate = (previousProps: { showModal: boolean }, previousState: { showModal: boolean }) => {
+  componentDidUpdate = (
+    previousProps: { showModal: boolean },
+    previousState: { showModal: boolean }
+  ) => {
     if (previousState.showModal !== this.state.showModal) {
       if (this.mounted) {
         this.setState(
           {
-            popUpPosition: { ...this.props.popUpPosition }
+            popUpPosition: { ...this.props.popUpPosition },
           },
           () => this.initilalPopSizePosition()
         );
@@ -153,7 +156,7 @@ class SuperModal extends React.PureComponent<IProps, any> {
       if (this.mounted) {
         this.setState(
           {
-            popUpPosition: { ...this.props.popUpPosition }
+            popUpPosition: { ...this.props.popUpPosition },
           },
           () => this.initilalPopSizePosition()
         );
@@ -191,16 +194,16 @@ class SuperModal extends React.PureComponent<IProps, any> {
           width: this.width,
           height: this.height,
           x: Math.round(popX),
-          y: Math.round(popY)
+          y: Math.round(popY),
         },
         initialPopUpPosition: {
           ...this.state.popUpPosition,
           width: this.width,
           height: this.height,
           x: Math.round(popX),
-          y: Math.round(popY)
+          y: Math.round(popY),
         },
-        loading: false
+        loading: false,
       });
     }
   };
@@ -208,16 +211,16 @@ class SuperModal extends React.PureComponent<IProps, any> {
   // Set width of modal according to the screen size
   setAutoPosition = (width: number, height: number) => {
     if (this.props.autoResizeOnload) {
-      if (window.matchMedia('(min-width: 1920px)').matches) {
+      if (window.matchMedia("(min-width: 1920px)").matches) {
         width = 1300;
         height = 850;
-      } else if (window.matchMedia('(min-width: 1200px)').matches) {
+      } else if (window.matchMedia("(min-width: 1200px)").matches) {
         width = 900;
         height = 515;
-      } else if (window.matchMedia('(min-width: 992px)').matches) {
+      } else if (window.matchMedia("(min-width: 992px)").matches) {
         width = 850;
         height = 515;
-      } else if (window.matchMedia('(min-width: 768px)').matches) {
+      } else if (window.matchMedia("(min-width: 768px)").matches) {
         width = 699;
         height = 515;
       }
@@ -227,15 +230,15 @@ class SuperModal extends React.PureComponent<IProps, any> {
 
   // Set postion of modal horizontally
   setHorizontalPosition = (popX: number) => {
-    if (this.props.alignHorizontal !== '') {
+    if (this.props.alignHorizontal !== "") {
       switch (this.props.alignHorizontal) {
-        case 'left':
+        case "left":
           popX = 0;
           break;
-        case 'right':
+        case "right":
           popX = window.innerWidth - this.width;
           break;
-        case 'center':
+        case "center":
           popX = (window.innerWidth - this.width) / 2;
           break;
         default:
@@ -250,15 +253,15 @@ class SuperModal extends React.PureComponent<IProps, any> {
 
   // Set postion of modal vertically
   setVerticalPosition = (popY: number) => {
-    if (this.props.alignVertical !== '') {
+    if (this.props.alignVertical !== "") {
       switch (this.props.alignVertical) {
-        case 'top':
+        case "top":
           popY = 0;
           break;
-        case 'bottom':
+        case "bottom":
           popY = window.innerHeight - this.height;
           break;
-        case 'center':
+        case "center":
           popY = (window.innerHeight - this.height) / 2;
           break;
         default:
@@ -271,7 +274,14 @@ class SuperModal extends React.PureComponent<IProps, any> {
     return popY;
   };
 
-  onResize = (ref: any) => {
+  onResize = (
+    e: any,
+    direction: any,
+    ref: { style: { width: any; height: any } },
+    delta: any,
+    position: any
+  ) => {
+    console.log(e, direction, ref, delta, position);
     this.isResized = true;
     if (this.mounted) {
       this.setState({
@@ -281,21 +291,21 @@ class SuperModal extends React.PureComponent<IProps, any> {
         popUpPosition: {
           ...this.state.popUpPosition,
           width: ref.style.width,
-          height: ref.style.height
-        }
+          height: ref.style.height,
+        },
       });
     }
   };
 
-  onDragStop = (e: any, d: { x: any; y: any }) => {
+  onDragStop = (d: { x: any; y: any }) => {
     this.isResized = true;
     if (this.mounted) {
       this.setState({
         popUpPosition: {
           ...this.state.popUpPosition,
           x: d.x,
-          y: d.y
-        }
+          y: d.y,
+        },
       });
     }
   };
@@ -304,16 +314,16 @@ class SuperModal extends React.PureComponent<IProps, any> {
     let newHeight: number = 0;
     if (this.HeaderRef) {
       newHeight = this.HeaderRef.current.offsetHeight;
-      this.HeaderRef.current.parentElement.classList.add('minimized');
+      this.HeaderRef.current.parentElement.classList.add("minimized");
     }
 
     if (!this.state.fullScreen) {
       this.lastPosition = {
-        ...this.state.initialPopUpPosition
+        ...this.state.initialPopUpPosition,
       };
     }
     if (this.state.dimmer && this.dimmerRef) {
-      this.dimmerRef.current.classList.add('minimized');
+      this.dimmerRef.current.classList.add("minimized");
     }
 
     if (this.mounted) {
@@ -323,7 +333,7 @@ class SuperModal extends React.PureComponent<IProps, any> {
           fullScreen: true,
           stacked: true,
           disableDragging: true,
-          dragHandleClassName: '',
+          dragHandleClassName: "",
           enable: {
             bottom: false,
             bottomLeft: false,
@@ -332,24 +342,24 @@ class SuperModal extends React.PureComponent<IProps, any> {
             right: false,
             top: false,
             topLeft: false,
-            topRight: false
+            topRight: false,
           },
           popUpPosition: {
             ...this.state.popUpPosition,
             x: 0,
             y: this.state.dimmer ? 0 : this.windowHeight - newHeight,
-            width: '100%',
+            width: "100%",
             height: newHeight,
             maxWidth: 300,
             minWidth: 300,
             maxHeight: newHeight,
-            minHeight: newHeight
-          }
+            minHeight: newHeight,
+          },
         },
         () => {
           this.rnd.updatePosition({
             x: 0,
-            y: this.state.dimmer ? 0 : this.windowHeight - newHeight
+            y: this.state.dimmer ? 0 : this.windowHeight - newHeight,
           });
         }
       );
@@ -359,15 +369,15 @@ class SuperModal extends React.PureComponent<IProps, any> {
   fullscreenModal = () => {
     if (!this.state.fullScreen) {
       this.lastPosition = {
-        ...this.state.initialPopUpPosition
+        ...this.state.initialPopUpPosition,
       };
     }
     if (this.HeaderRef) {
-      this.HeaderRef.current.parentElement.classList.remove('minimized');
-      this.HeaderRef.current.parentElement.classList.add('fullscreen');
+      this.HeaderRef.current.parentElement.classList.remove("minimized");
+      this.HeaderRef.current.parentElement.classList.add("fullscreen");
     }
     if (this.state.dimmer && this.dimmerRef) {
-      this.dimmerRef.current.classList.remove('minimized');
+      this.dimmerRef.current.classList.remove("minimized");
     }
     if (this.mounted) {
       this.setState(
@@ -376,7 +386,7 @@ class SuperModal extends React.PureComponent<IProps, any> {
           minimized: false,
           stacked: false,
           disableDragging: true,
-          dragHandleClassName: '',
+          dragHandleClassName: "",
           enable: {
             bottom: false,
             bottomLeft: false,
@@ -385,22 +395,22 @@ class SuperModal extends React.PureComponent<IProps, any> {
             right: false,
             top: false,
             topLeft: false,
-            topRight: false
+            topRight: false,
           },
           popUpPosition: {
             ...this.state.popUpPosition,
             x: 0,
             y: 0,
-            width: '100%',
-            height: '100%',
-            maxWidth: '100%',
-            maxHeight: '100%'
-          }
+            width: "100%",
+            height: "100%",
+            maxWidth: "100%",
+            maxHeight: "100%",
+          },
         },
         () => {
           this.rnd.updatePosition({
             x: 0,
-            y: 0
+            y: 0,
           });
         }
       );
@@ -409,11 +419,11 @@ class SuperModal extends React.PureComponent<IProps, any> {
 
   stackModal = () => {
     if (this.HeaderRef) {
-      this.HeaderRef.current.parentElement.classList.remove('minimized');
-      this.HeaderRef.current.parentElement.classList.remove('fullscreen');
+      this.HeaderRef.current.parentElement.classList.remove("minimized");
+      this.HeaderRef.current.parentElement.classList.remove("fullscreen");
     }
     if (this.state.dimmer && this.dimmerRef) {
-      this.dimmerRef.current.classList.remove('minimized');
+      this.dimmerRef.current.classList.remove("minimized");
     }
     if (this.mounted) {
       this.setState(
@@ -422,18 +432,19 @@ class SuperModal extends React.PureComponent<IProps, any> {
           minimized: false,
           stacked: true,
           disableDragging: this.props.disableDragging,
-          dragHandleClassName: this.state.dragHandleClassName || this.props.dragHandleClassName,
+          dragHandleClassName:
+            this.state.dragHandleClassName || this.props.dragHandleClassName,
           enable: {
-            ...this.props.enable
+            ...this.props.enable,
           },
           popUpPosition: {
-            ...this.lastPosition
-          }
+            ...this.lastPosition,
+          },
         },
         () => {
           this.rnd.updatePosition({
             x: this.lastPosition.x,
-            y: this.lastPosition.y
+            y: this.lastPosition.y,
           });
         }
       );
@@ -441,74 +452,83 @@ class SuperModal extends React.PureComponent<IProps, any> {
   };
 
   renderRndModal = () => {
-    const childrenWithProps = React.Children.map(this.props.children, (child: any) => {
-      let childName = child.type.name;
-      if (React.isValidElement(child)) {
-        let updateProps: any = {};
-        switch (childName) {
-          case 'Header':
-            updateProps = {
-              onRequestMinimize: this.minimizeModal,
-              onRequestFullscreen: this.fullscreenModal,
-              onRequestStack: this.stackModal,
-              minizeable: this.props.minizeable,
-              minimized: this.state.minimized,
-              fullScreen: this.state.fullScreen,
-              stacked: this.state.stacked,
-              className: this.state.dragHandleClassName,
-              reference: this.HeaderRef
-            };
-            break;
-          case 'Content':
-            updateProps = {
-              reference: this.ContentRef
-            };
-            break;
-          case 'Description':
-            updateProps = {
-              reference: this.DescriptionRef
-            };
-            break;
-          case 'Footer':
-            updateProps = {
-              reference: this.FooterRef
-            };
-            break;
-          default:
-            updateProps = {};
-            break;
+    const childrenWithProps = React.Children.map(
+      this.props.children,
+      (child: any) => {
+        let childName = child.type.name;
+        if (React.isValidElement(child)) {
+          let updateProps: any = {};
+          switch (childName) {
+            case "Header":
+              updateProps = {
+                onRequestMinimize: this.minimizeModal,
+                onRequestFullscreen: this.fullscreenModal,
+                onRequestStack: this.stackModal,
+                minizeable: this.props.minizeable,
+                minimized: this.state.minimized,
+                fullScreen: this.state.fullScreen,
+                stacked: this.state.stacked,
+                className: this.state.dragHandleClassName,
+                reference: this.HeaderRef,
+              };
+              break;
+            case "Content":
+              updateProps = {
+                reference: this.ContentRef,
+              };
+              break;
+            case "Description":
+              updateProps = {
+                reference: this.DescriptionRef,
+              };
+              break;
+            case "Footer":
+              updateProps = {
+                reference: this.FooterRef,
+              };
+              break;
+            default:
+              updateProps = {};
+              break;
+          }
+          return React.cloneElement(child, updateProps);
         }
-        return React.cloneElement(child, updateProps);
+        return child;
       }
-      return child;
-    });
+    );
     return (
       <React.Fragment>
         <Rnd
           // Rnd properties
-          className={this.state.className ? `super-modal ${this.state.className}` : 'super-modal'}
+          className={
+            this.state.className
+              ? `super-modal ${this.state.className}`
+              : "super-modal"
+          }
           default={this.state.popUpPosition}
           minWidth={this.state.popUpPosition.minWidth}
           minHeight={this.state.popUpPosition.minHeight}
           maxWidth={this.state.popUpPosition.maxWidth}
           maxHeight={this.state.popUpPosition.maxHeight}
-          onResize={(e, direction, ref, delta, position) => this.onResize(ref)}
+          onResize={(e, direction, ref, delta, position) =>
+            this.onResize(e, direction, ref, delta, position)
+          }
           size={{
             width: this.state.popUpPosition.width,
-            height: this.state.popUpPosition.height
+            height: this.state.popUpPosition.height,
           }}
           bounds={this.state.boundWith}
           dragHandleClassName={this.state.dragHandleClassName}
           resizeHandleClasses={{
-            topLeft: 'resize_top_left',
-            bottomRight: 'resize_bottom_right',
-            bottomLeft: 'resize_bottom_left',
-            topRight: 'resize_top_right'
+            topLeft: "resize_top_left",
+            bottomRight: "resize_bottom_right",
+            bottomLeft: "resize_bottom_left",
+            topRight: "resize_top_right",
           }}
           enableResizing={this.state.enable}
-          style={{ overflow: 'hidden' }}
+          style={{ overflow: "hidden" }}
           disableDragging={this.state.disableDragging}
-          onDragStop={(e, d) => this.onDragStop(e, d)}
+          onDragStop={(_e: any, d: any) => this.onDragStop(d)}
           ref={(rnd) => {
             this.rnd = rnd;
           }}
@@ -525,7 +545,9 @@ class SuperModal extends React.PureComponent<IProps, any> {
         {this.state.showModal
           ? ReactDOM.createPortal(
               this.state.dimmer ? (
-                <Dimmer reference={this.dimmerRef}>{this.renderRndModal()}</Dimmer>
+                <Dimmer reference={this.dimmerRef}>
+                  {this.renderRndModal()}
+                </Dimmer>
               ) : (
                 this.renderRndModal()
               ),

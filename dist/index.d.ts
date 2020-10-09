@@ -10,6 +10,8 @@ interface IProps {
     autoResizeOnload?: boolean;
     alignVertical?: string;
     alignHorizontal?: string;
+    minizeable?: boolean;
+    closeOnDimmerClick?: boolean;
     enable?: {
         bottom?: boolean;
         bottomLeft?: boolean;
@@ -31,50 +33,38 @@ interface IProps {
         maxHeight?: number;
     };
 }
-declare class SuperModal extends React.Component<IProps, any> {
-    constructor(props: any);
-    static defaultProps: {
-        className: string;
-        showModal: boolean;
-        dimmer: boolean;
-        boundWith: string;
-        dragHandleClassName: string;
-        disableDragging: boolean;
-        autoResizeOnload: boolean;
-        alignVertical: string;
-        alignHorizontal: string;
-        popUpPosition: {
-            x: number;
-            y: number;
-            width: number;
-            height: number;
-            minHeight: number;
-            minWidth: number;
-            maxWidth: number;
-            maxHeight: number;
-        };
-        enable: {
-            bottom: boolean;
-            bottomLeft: boolean;
-            bottomRight: boolean;
-            left: boolean;
-            right: boolean;
-            top: boolean;
-            topLeft: boolean;
-            topRight: boolean;
-        };
-    };
+declare class SuperModal extends React.PureComponent<IProps, any> {
+    static defaultProps: Partial<IProps>;
     static Header: (props: any) => JSX.Element;
     static Description: (props: any) => JSX.Element;
     static Content: (props: any) => JSX.Element;
     static Footer: (props: any) => JSX.Element;
     static Dimmer: (props: any) => JSX.Element;
-    is_mounted: boolean;
-    window_width: number;
+    constructor(props: any);
+    elem: any;
+    document: any;
+    mounted: boolean;
+    windowWidth: number;
+    windowHeight: number;
     width: number;
     height: number;
-    is_resized: any;
+    isResized: any;
     rnd: any;
+    dimmerRef: any;
+    HeaderRef: any;
+    FooterRef: any;
+    ContentRef: any;
+    DescriptionRef: any;
+    lastPosition: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+        minHeight: number;
+        minWidth: number;
+        maxWidth: number;
+        maxHeight: number;
+    };
     componentDidMount: () => void;
     componentDidUpdate: (previousProps: {
         showModal: boolean;
@@ -89,7 +79,20 @@ declare class SuperModal extends React.Component<IProps, any> {
     };
     setHorizontalPosition: (popX: number) => number;
     setVerticalPosition: (popY: number) => number;
-    render_rnd_modal: () => JSX.Element;
+    onResize: (e: any, direction: any, ref: {
+        style: {
+            width: any;
+            height: any;
+        };
+    }, delta: any, position: any) => void;
+    onDragStop: (d: {
+        x: any;
+        y: any;
+    }) => void;
+    minimizeModal: () => void;
+    fullscreenModal: () => void;
+    stackModal: () => void;
+    renderRndModal: () => JSX.Element;
     render(): JSX.Element;
 }
 export default SuperModal;

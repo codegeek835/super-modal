@@ -1,6 +1,6 @@
 {
   "name": "super-modal-resizable",
-  "version": "1.0.2",
+  "version": "1.0.31",
   "description": "A Dropdown with super features",
   "main": "dist/index.js",
   "scripts": {
@@ -37,12 +37,12 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "react-rnd": "^10.1.10"
+    "react-rnd": "^10.2.3"
   },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "react-rnd": "^10.1.10"
+    "react-rnd": "^10.2.3"
   },
   "files": [
     "dist"
